@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>個人網站路由範例</title>
+  <style>
+    body {
+      font-family: "Noto Sans TC", sans-serif;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    nav a {
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #007bff;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>我的個人網站</h1>
+  <nav>
+    <a href="/name" data-link>姓名</a>
+    <a href="/age" data-link>年齡</a>
+    <a href="/gender" data-link>性別</a>
+    <a href="/hobby" data-link>興趣</a>
+  </nav>
+
+  <main id="content">
+    <p>歡迎來到我的個人網站，請點選上方選單或輸入路徑。</p>
+  </main>
+
+  <script>
+    const profile = {
+      name: "Alice Lin",
+      age: 28,
+      gender: "女性",
+      hobby: "畫畫",
+    };
+
+    const routes = {
+      "/": () => `<p>歡迎來到我的個人網站，請點選上方選單或輸入路徑。</p>`,
+      "/name": () => `<h2>姓名</h2><p>${profile.name}</p>`,
+      "/age": () => `<h2>年齡</h2><p>${profile.age}</p>`,
+      "/gender": () => `<h2>性別</h2><p>${profile.gender}</p>`,
+      "/hobby": () => `<h2>興趣</h2><p>${profile.hobby}</p>`,
+    };
+
+    function router() {
+      const path = window.location.pathname;
+      const render = routes[path] || (() => `<h2>404</h2><p>找不到該頁面。</p>`);
+      document.getElementById("content").innerHTML = render();
+    }
+
+    // 攔截點擊事件，避免頁面重新載入
+    document.body.addEventListener("click", e => {
+      if (e.target.matches("[data-link]")) {
+        e.preventDefault();
+        history.pushState(null, null, e.target.href);
+        router();
+      }
+    });
+
+    // 支援前進後退
+    window.addEventListener("popstate", router);
+
+    // 初次載入
+    router();
+  </script>
+</body>
+</html>
