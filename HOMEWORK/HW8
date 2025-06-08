@@ -1,0 +1,100 @@
+1. 找出最大值
+python
+複製
+編輯
+def find_max(numbers):
+    max_val = numbers[0]
+    for num in numbers:
+        if num > max_val:
+            max_val = num
+    return max_val
+2. 計算平均值（小數點取到一位）
+python
+複製
+編輯
+def average(nums):
+    if not nums:
+        return 0.0
+    return round(sum(nums) / len(nums), 1)
+3. 奇偶分類
+python
+複製
+編輯
+def classify_even_odd(numbers):
+    result = {'even': [], 'odd': []}
+    for num in numbers:
+        if num % 2 == 0:
+            result['even'].append(num)
+        else:
+            result['odd'].append(num)
+    return result
+4. 數字轉星號圖形
+python
+複製
+編輯
+def print_stars(n):
+    for i in range(1, n + 1):
+        print('*' * i)
+5. 英文成績轉等第
+python
+複製
+編輯
+def grade(score):
+    if 90 <= score <= 100:
+        return 'A'
+    elif 80 <= score < 90:
+        return 'B'
+    elif 70 <= score < 80:
+        return 'C'
+    elif 60 <= score < 70:
+        return 'D'
+    elif 0 <= score < 60:
+        return 'F'
+    else:
+        return 'Invalid'
+6. 計算字元出現次數
+python
+複製
+編輯
+def count_chars(s):
+    count = {}
+    for ch in s:
+        count[ch] = count.get(ch, 0) + 1
+    return count
+7. 字典轉換為字串
+python
+複製
+編輯
+def dict_to_string(d):
+    return ', '.join(f'{k}:{v}' for k, v in d.items())
+8. 判斷質數
+python
+複製
+編輯
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+9. 找出 list 中出現次數最多的數字
+python
+複製
+編輯
+def most_common(nums):
+    count = {}
+    for num in nums:
+        count[num] = count.get(num, 0) + 1
+    return max(count, key=count.get)
+10. 統計學生總分與平均
+python
+複製
+編輯
+def summary(data):
+    for student in data:
+        name = student['name']
+        scores = student['scores']
+        total = sum(scores)
+        avg = round(total / len(scores), 1)
+        print(f"{name} - 總分: {total}, 平均: {avg}")
