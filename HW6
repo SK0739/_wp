@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>新增三筆貼文範例</title>
+  <style>
+    .post {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>我的貼文</h1>
+  <button id="add-posts">新增三筆貼文</button>
+
+  <div id="posts-container"></div>
+
+  <script>
+    const postsData = [
+      { title: "第一篇貼文", content: "這是第一篇貼文的內容。" },
+      { title: "第二篇貼文", content: "這是第二篇貼文的內容。" },
+      { title: "第三篇貼文", content: "這是第三篇貼文的內容。" },
+    ];
+
+    const container = document.getElementById("posts-container");
+    const button = document.getElementById("add-posts");
+
+    button.addEventListener("click", () => {
+      // 清空容器，避免重複新增
+      container.innerHTML = "";
+
+      postsData.forEach(post => {
+        const postEl = document.createElement("div");
+        postEl.className = "post";
+        postEl.innerHTML = `
+          <h2>${post.title}</h2>
+          <p>${post.content}</p>
+        `;
+        container.appendChild(postEl);
+      });
+    });
+  </script>
+
+</body>
+</html>
